@@ -1,0 +1,5 @@
+ALTER SYSTEM SET max_connections = 1000;
+ALTER SYSTEM RESET shared_buffers;
+CREATE DATABASE pg_fts;
+CREATE USER pg_fts WITH PASSWORD 'pg_fts';
+GRANT ALL PRIVILEGES ON DATABASE "pg_fts" to pg_fts;
