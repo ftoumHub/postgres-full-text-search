@@ -1,3 +1,10 @@
+Basé sur la vidéo : https://www.youtube.com/watch?v=szfUbzsKvtE
+
+Build du conteneur
+```bash
+docker-compose up --build
+```
+
 Démarrer le conteneur et exécuter des commandes
 ```bash
 docker-compose up --remove-orphans -d
@@ -14,23 +21,6 @@ psql -U postgres
 
 -- cool.  let's connect to our pg_fts database
 \connect pg_fts
-
--- create our card_fts schema
-CREATE schema card_fts;
-
--- lets create our table for cards
-CREATE TABLE card_fts.card(name varchar(50), artist varchar(256), text TEXT);
-
--- now we need to import our CSV file into this table.
--- luckily Postgres makes this super easy
-COPY card_fts.card FROM '/data/10E.csv' DELIMITER ';' CSV;
-
--- Done!  now lets execute some SQL queries
-select count(*) from card_fts.card;
- count 
--------
-   384
-(1 row)
 ```
 
 Quitter psql:
