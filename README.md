@@ -10,16 +10,19 @@ Démarrer le conteneur et exécuter des commandes
 docker-compose up --remove-orphans -d
 
 docker exec -it pg_fts bash
+
+-- run sql scripts
+psql -U postgres pg_fts -a -f /data/datas.sql
 ```
 Connection à la BD Postgresql
 ```bash
 -- enter a psql session as the user 'postgres'
 psql -U postgres
 
--- let's list out our databases
+-- Listing out our databases
 \l
 
--- cool.  let's connect to our pg_fts database
+-- Connect to our pg_fts database
 \connect pg_fts
 ```
 

@@ -35,10 +35,10 @@ Pré-traitement :
 
 ## 2. Dans POSTGRESQL?
 
-On parle de Recherche Plein Text (**Full Text Search**)  
+On parle de Recherche Plein Text (**Full Text Search**) 
 Plusieurs composants formant une chaîne :
-* Parser
-* Un ou des dictionnaires
+* Parser (identification des tokens)
+* Un ou des dictionnaires (filtre les tokens pour obtenir un lexème)
 
 But : obtenir une liste triée de lexèmes formant un _tsvector_.
 
@@ -49,13 +49,14 @@ sens et de son qui n'est pas fonctionnelle ou dérivationnelle._
 
 Les mots utiles et seulement leur racine.
 
-Exemple : un verbe sans terminaison :
-
-Empêcher => empech
+Exemple : un verbe sans terminaison : 
+* Empêcher => empech
 
 ## Type TSVECTOR
 
-List triée de lexèmes
+Un **tsvector** est une liste triée de **lexèmes**.  
+Ex, on passe un document (ici une phrase) à la fonction **to_tsvector**. Celle-ci va retourner le tsvector correspondant au document.
+
 
 ```sql
 select to_tsvector('french', 'Le meilleur SGBD Opensource'); 
@@ -64,6 +65,8 @@ to_tsvector
 -----------------------------------
 'meilleur':2 'opensourc':4 'sgbd':3
 ```
+
+On obtient la représentation vectorielle de la phrase. Les lexèmes de la phrase sont extraits et triés. Le chiffre à la droite des : correspond à l'emplacement du lexème dans la phrase.
 
 ## PARSER
 
